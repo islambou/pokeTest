@@ -14,7 +14,7 @@ export default (
         //prettier-ignore
         let pokemonExistsIndex = newState.map((item) => item.info.id).indexOf(pokemon.info.id);
         if (pokemonExistsIndex != -1) {
-          newState.splice(pokemonExistsIndex, 1, pokemon);
+          newState.splice(pokemonExistsIndex, 1, pokemon); //replace existing pokemon entity with the fresh payload
         } else {
           newState.push(pokemon);
         }
