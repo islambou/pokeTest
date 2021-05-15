@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { View, ViewProps, StyleSheet, Platform } from "react-native";
+import { View, ViewProps, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Text from "../components/text";
 import { PokemonBasic } from "../models/pokemon";
@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 5,
   },
+  imageContainer: { overflow: "hidden" },
 });
 
 interface PokeCardProps extends ViewProps {
@@ -35,7 +36,7 @@ const PokeCard: FC<PokeCardProps> = ({ pokemon, ...props }) => {
   return (
     <TouchableOpacity onPress={props.onPress} style={styles.shadow}>
       <View style={[styles.container, props.style]}>
-        <View style={{ backgroundColor: cardColor, overflow: "hidden" }}>
+        <View style={[styles.imageContainer, { backgroundColor: cardColor }]}>
           <PokeImage pokemonId={pokemon.id} size={props.size} />
         </View>
 

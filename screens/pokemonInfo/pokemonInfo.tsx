@@ -27,7 +27,7 @@ const PokemonInfo: React.FC<PokemonInfoContainerProps> = ({
 
   const printPokemonTypes = () => {
     return (
-      <View style={{ flexDirection: "row" }}>
+      <View style={[styles.row]}>
         {pokemon.details.types.map((item) => (
           <TypeTag type={item.type.name} key={`${item.type.name}-tag`} />
         ))}
@@ -40,7 +40,7 @@ const PokemonInfo: React.FC<PokemonInfoContainerProps> = ({
   const reenderGenerationItem = (item: PokemonBasic) => (
     <PokeCard
       pokemon={item}
-      style={{ marginRight: 10, marginBottom: 10 }}
+      style={styles.pokeCard}
       onPress={() => {
         if (pokemon.info.id !== item.id) {
           props.onItemPress(item.id);
@@ -51,16 +51,16 @@ const PokemonInfo: React.FC<PokemonInfoContainerProps> = ({
 
   return (
     <ScrollView
-      style={{
-        backgroundColor: getPokeColor(pokemon.info.color.name),
-        flex: 1,
-      }}
+      style={[
+        styles.screen,
+        { backgroundColor: getPokeColor(pokemon.info.color.name) },
+      ]}
     >
       <SimpleActionBar />
       <View>
-        <View style={{ flexDirection: "row" }}>
+        <View style={styles.header}>
           <PokeImage pokemonId={pokemon.info.id} size={144} />
-          <View style={{ justifyContent: "center" }}>
+          <View style={styles.basicSection}>
             <Text size={30} bold withshadow color="white">
               {pokemon.info.name}
             </Text>
@@ -93,13 +93,20 @@ const PokemonInfo: React.FC<PokemonInfoContainerProps> = ({
 };
 
 const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+  },
   container: { padding: 20 },
+  header: { flexDirection: "row" },
   section: {
     backgroundColor: "rgba(0,0,0,0.1)",
     padding: 15,
     borderRadius: 5,
     marginBottom: 15,
   },
+  basicSection: { justifyContent: "center" },
+  row: { flexDirection: "row" },
+  pokeCard: { marginRight: 10, marginBottom: 10 },
 });
 
 export default PokemonInfo;

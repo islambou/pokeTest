@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 
-import { FlatList, View, Text } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 import Loader from "../../components/loader";
 import PokeCard from "../../components/pokeCard";
 import Pokemon from "../../models/pokemon";
@@ -17,7 +17,7 @@ const PokemonsList: React.FC<PokemonsListProps> = (props) => {
   const reenderItem = (item: Pokemon) => (
     <PokeCard
       pokemon={item.info}
-      style={{ marginRight: 10, marginBottom: 10 }}
+      style={styles.pokeCardWrapper}
       onPress={() => {
         props.onItemPress(item.info.id);
       }}
@@ -29,7 +29,7 @@ const PokemonsList: React.FC<PokemonsListProps> = (props) => {
   return (
     <FlatList
       data={props.pokemons}
-      contentContainerStyle={{ paddingVertical: 30 }}
+      contentContainerStyle={styles.listContentContainer}
       numColumns={3}
       renderItem={({ item }) => reenderItem(item)}
       onEndReached={props.loadMore}
@@ -39,5 +39,10 @@ const PokemonsList: React.FC<PokemonsListProps> = (props) => {
     />
   );
 };
+
+const styles = StyleSheet.create({
+  pokeCardWrapper: { marginRight: 10, marginBottom: 10 },
+  listContentContainer: { paddingVertical: 30 },
+});
 
 export default PokemonsList;

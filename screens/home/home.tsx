@@ -1,7 +1,6 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 
 import { View, StyleSheet } from "react-native";
-import { DEFAULT_FETCH_LIMIT } from "../../lib/apolloClient";
 import Pokemon from "../../models/pokemon";
 import Header from "./header";
 import List from "./list";

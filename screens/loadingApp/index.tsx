@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Text, Image, Animated } from "react-native";
+import { Text, Image, Animated, StyleSheet } from "react-native";
 
 const LoadingScreen: React.FC<{
   version?: string;
@@ -22,31 +22,30 @@ const LoadingScreen: React.FC<{
     ).start();
   }, [fadeAnim]);
   return (
-    <Animated.View
-      style={{
-        flex: 1,
-        alignContent: "center",
-        alignItems: "center",
-        justifyContent: "center",
-        opacity: fadeAnim,
-      }}
-    >
+    <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
       <Image
         source={{
           uri: "https://i.gifer.com/4xjS.gif",
         }}
-        style={{
-          width: 80,
-          resizeMode: "contain",
-        }}
+        style={styles.img}
       />
-      <Text
-        style={{ position: "absolute", bottom: 10, color: "grey", fontSize: 8 }}
-      >
-        {props.version}
-      </Text>
+      <Text style={styles.text}>{props.version}</Text>
     </Animated.View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  img: {
+    width: 80,
+    resizeMode: "contain",
+  },
+  text: { position: "absolute", bottom: 10, color: "grey", fontSize: 8 },
+});
 
 export default LoadingScreen;
